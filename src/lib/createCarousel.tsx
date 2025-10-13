@@ -1,9 +1,6 @@
 import React from "react";
 import { Still } from "remotion";
-import { createCarousel } from "./lib/createCarousel";
-import { newExampleCarousels } from "./carousels/new-examples";
-import { completeExamples } from "./carousels/complete-examples";
-import { SlideLayout } from "./components/SlideLayout";
+import { SlideLayout } from "../components/SlideLayout";
 import {
   HookContent,
   TipContent,
@@ -17,8 +14,8 @@ import {
   QuestionContent,
   TimelineContent,
   StaticImageContent,
-} from "./components/content";
-import { CarouselConfig, SlideConfig } from "./types/carousel";
+} from "../components/content";
+import { CarouselConfig, SlideConfig } from "../types/carousel";
 
 /**
  * Renders the appropriate content component based on slide type
@@ -160,10 +157,9 @@ const renderSlideContent = (
 };
 
 /**
- * Dynamic carousel slide component that accepts config via inputProps
- * This is the component that will be rendered by Remotion Lambda
+ * Individual slide component
  */
-const DynamicCarouselSlide: React.FC<{
+const CarouselSlideComponent: React.FC<{
   config: CarouselConfig;
   slideIndex: number;
 }> = ({ config, slideIndex }) => {
@@ -187,57 +183,69 @@ const DynamicCarouselSlide: React.FC<{
 };
 
 /**
- * Generic composition that accepts any carousel config and slide index
- * This allows Python backend to render any slide dynamically
+ * Creates Remotion Still compositions for each slide in the carousel
+ * 
+ * @param config - Carousel configuration
+ * @returns Array of Still components
+ * 
+ * @example
+ * ```tsx
+ * const myCarousel: NewCarouselConfig = {
+ *   id: "ai-tips",
+ *   theme: "dark",
+ *   brandName: "OPC.AI",
+ *   tagline: "One Person Company",
+ *   website: "@opc.ai",
+ *   profileInitials: "AS",
+ *   showSlideNumbers: true,
+ *   slides: [
+ *     {
+ *       type: "hook",
+ *       headlineTop: "5 AI Tips",
+ *       headlineHighlight: "That Work",
+ *     },
+ *     {
+ *       type: "tip",
+ *       number: "01",
+ *       title: "Automate Email Responses",
+ *       description: "Save 10 hours per week",
+ *     },
+ *     {
+ *       type: "cta",
+ *       headline: "Ready to Start?",
+ *       action: "Follow for more tips",
+ *     },
+ *   ],
+ * };
+ * 
+ * const stills = createCarousel(myCarousel);
+ * ```
  */
-const GenericCarouselSlide: React.FC<{
-  inputProps: {
-    config: CarouselConfig;
-    slideIndex: number;
-  };
-}> = ({ inputProps }) => {
-  return (
-    <DynamicCarouselSlide
-      config={inputProps.config}
-      slideIndex={inputProps.slideIndex}
-    />
-  );
-};
+export function createCarousel(config: CarouselConfig): React.ReactElement[] {
+  // Validate slide count
+  if (config.slides.length < 2 || config.slides.length > 10) {
+    throw new Error(
+      `Carousel must have 2-10 slides (found ${config.slides.length})`
+    );
+  }
 
-export const RemotionRoot: React.FC = () => {
-  return (
-    <>
-      {/* Generic composition for dynamic rendering from Python backend */}
+  // Create a Still for each slide
+  return config.slides.map((_, index) => {
+    const slideNumber = index + 1;
+    const stillId = `${config.id}-slide-${slideNumber}`;
+
+    return (
       <Still
-        id="carousel-slide"
-        component={GenericCarouselSlide}
+        key={stillId}
+        id={stillId}
+        component={CarouselSlideComponent}
         width={1080}
         height={1080}
         defaultProps={{
-          inputProps: {
-            config: {
-              id: "example",
-              theme: "cream",
-              brandName: "Example",
-              website: "@example",
-              profileInitials: "EX",
-              showSlideNumbers: true,
-              slides: [
-                {
-                  type: "hook",
-                  headlineTop: "Example",
-                  headlineHighlight: "Slide",
-                },
-              ],
-            },
-            slideIndex: 0,
-          },
+          config,
+          slideIndex: index,
         }}
       />
-
-      {/* Pre-configured example carousels */}
-      {newExampleCarousels.map((carousel) => createCarousel(carousel))}
-      {completeExamples.map((carousel) => createCarousel(carousel))}
-    </>
-  );
-};
+    );
+  });
+}
