@@ -1,9 +1,12 @@
 /**
  * Carousel Type System
- * Supports all 6 content components with full configurability
+ * Supports all content components with full configurability
+ * Optimized for modern tech aesthetic
  */
 
-export type ThemeType = "cream" | "dark" | "blue" | "purple";
+import { ThemeKey } from "../styles/themes";
+
+export type ThemeType = ThemeKey;
 
 /**
  * Content type determines which component to render

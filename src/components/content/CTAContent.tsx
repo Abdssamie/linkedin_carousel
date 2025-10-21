@@ -1,23 +1,18 @@
 import React from "react";
+import { getTheme, typography, spacing, ThemeKey } from "../../styles/themes";
 
 /**
  * CTAContent - Call-to-action closing slide
  * Use for: Final slide, next steps, contact info, engagement prompt
+ * Optimized for conversion with modern design
  */
 
 interface CTAContentProps {
   headline: string;
   subheadline?: string;
   action: string;
-  theme: "cream" | "dark" | "blue" | "purple";
+  theme: ThemeKey;
 }
-
-const themes = {
-  cream: { text: "#2C2C2C", accent: "#F5A623" },
-  dark: { text: "#FFFFFF", accent: "#00D9FF" },
-  blue: { text: "#0A2540", accent: "#0066FF" },
-  purple: { text: "#2D1B69", accent: "#7C3AED" },
-};
 
 export const CTAContent: React.FC<CTAContentProps> = ({
   headline,
@@ -25,61 +20,66 @@ export const CTAContent: React.FC<CTAContentProps> = ({
   action,
   theme,
 }) => {
-  const colors = themes[theme];
+  const colors = getTheme(theme);
+
+  const containerStyle: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: spacing.xl,
+    textAlign: "center",
+    maxWidth: "800px",
+    margin: "0 auto",
+  };
+
+  const headlineStyle: React.CSSProperties = {
+    fontSize: typography.sizes.hero,
+    fontWeight: typography.weights.black,
+    color: colors.text,
+    lineHeight: typography.lineHeights.normal,
+    margin: 0,
+    letterSpacing: typography.letterSpacing.tight,
+    fontFamily: typography.fontFamily.primary,
+  };
+
+  const subheadlineStyle: React.CSSProperties = {
+    fontSize: typography.sizes.h3,
+    fontWeight: typography.weights.regular,
+    color: colors.textSecondary,
+    lineHeight: typography.lineHeights.relaxed,
+    margin: 0,
+    maxWidth: "600px",
+  };
+
+  const actionStyle: React.CSSProperties = {
+    fontSize: typography.sizes.h3,
+    fontWeight: typography.weights.bold,
+    color: colors.bg,
+    backgroundColor: colors.accent,
+    padding: `${spacing.lg} ${spacing['3xl']}`,
+    border: `3px solid ${colors.accent}`,
+    borderRadius: "12px",
+    marginTop: spacing.lg,
+    letterSpacing: typography.letterSpacing.normal,
+    fontFamily: typography.fontFamily.primary,
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+  };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "40px",
-        textAlign: "center",
-      }}
-    >
-      <h2
-        style={{
-          fontSize: "5em",
-          fontWeight: 900,
-          color: colors.text,
-          lineHeight: 1.15,
-          margin: 0,
-          letterSpacing: "-0.03em",
-        }}
-      >
+    <div style={containerStyle}>
+      <h2 style={headlineStyle}>
         {headline}
       </h2>
 
       {subheadline && (
-        <p
-          style={{
-            fontSize: "2em",
-            fontWeight: 500,
-            color: colors.text,
-            opacity: 0.7,
-            lineHeight: 1.4,
-            margin: 0,
-            maxWidth: "700px",
-          }}
-        >
+        <p style={subheadlineStyle}>
           {subheadline}
         </p>
       )}
 
-      <div
-        style={{
-          fontSize: "2.2em",
-          fontWeight: 700,
-          color: colors.accent,
-          padding: "24px 48px",
-          border: `4px solid ${colors.accent}`,
-          borderRadius: "16px",
-          backgroundColor: `${colors.accent}10`,
-          marginTop: "20px",
-          letterSpacing: "0.02em",
-        }}
-      >
+      <div style={actionStyle}>
         {action}
       </div>
     </div>
