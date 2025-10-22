@@ -63,6 +63,7 @@ export const QuestionContent: React.FC<QuestionContentProps> = ({
           letterSpacing: "-0.02em",
           wordWrap: "break-word",
           overflowWrap: "break-word",
+          textShadow: `0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6)`,
         }}
       >
         {question}

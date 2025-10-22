@@ -2,20 +2,22 @@ import React from "react";
 import { getTheme, typography, spacing, ThemeKey } from "../../styles/themes";
 
 /**
- * ListContent - Bullet points or checklist items
- * Use for: Key benefits, features, checklist, multiple points
- * Perfect for text-heavy content without images
+ * HeavyListContent - Text-heavy list with title, description, and many items
+ * Use for: Comprehensive feature lists, detailed specifications, extensive content
+ * Optimized for maximum text capacity with smaller font sizes
  */
 
-interface ListContentProps {
+interface HeavyListContentProps {
   title: string;
+  description: string;
   items: string[];
   theme: ThemeKey;
   useCheckmarks?: boolean; // Use ✓ instead of bullets
 }
 
-export const ListContent: React.FC<ListContentProps> = ({
+export const HeavyListContent: React.FC<HeavyListContentProps> = ({
   title,
+  description,
   items,
   theme,
   useCheckmarks = false,
@@ -29,7 +31,7 @@ export const ListContent: React.FC<ListContentProps> = ({
         flexDirection: "column",
         justifyContent: "center",
         gap: spacing.xl,
-        maxWidth: "900px",
+        maxWidth: "950px",
         margin: "0 auto",
       }}
     >
@@ -48,7 +50,18 @@ export const ListContent: React.FC<ListContentProps> = ({
         {title}
       </h2>
 
-
+      {/* Description */}
+      <p
+        style={{
+          fontSize: typography.sizes.body,
+          fontWeight: typography.weights.regular,
+          color: colors.textSecondary,
+          lineHeight: typography.lineHeights.normal,
+          margin: 0,
+        }}
+      >
+        {description}
+      </p>
 
       {/* List items */}
       <div style={{ display: "flex", flexDirection: "column", gap: spacing.md }}>
@@ -58,7 +71,7 @@ export const ListContent: React.FC<ListContentProps> = ({
             style={{
               display: "flex",
               alignItems: "flex-start",
-              gap: spacing.lg,
+              gap: spacing.md,
             }}
           >
             {/* Bullet or checkmark */}
@@ -81,7 +94,7 @@ export const ListContent: React.FC<ListContentProps> = ({
                 fontWeight: typography.weights.medium,
                 color: colors.text,
                 lineHeight: typography.lineHeights.normal,
-                paddingTop: "4px",
+                paddingTop: "2px",
               }}
             >
               {item}

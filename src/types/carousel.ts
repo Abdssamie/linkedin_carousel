@@ -19,17 +19,21 @@ export type ContentType =
   | "quote"
   | "stat"
   | "list"
+  | "heavyList"
   | "comparison"
-  | "image"
   | "question"
   | "timeline"
-  | "staticImage";
+  | "staticImage"
+  | "twoColumn"
+  | "twoRow";
 
 /**
  * Base slide configuration (common to all slides)
  */
 interface BaseSlideConfig {
   type: ContentType;
+  /** Use minimal layout for this slide (no header, minimal footer padding) */
+  useMinimalLayout?: boolean;
 }
 
 /**
@@ -107,6 +111,17 @@ export interface ListSlideConfig extends BaseSlideConfig {
 }
 
 /**
+ * Heavy List slide - Text-heavy list with description and many items
+ */
+export interface HeavyListSlideConfig extends BaseSlideConfig {
+  type: "heavyList";
+  title: string;
+  description: string;
+  items: string[];
+  useCheckmarks?: boolean;
+}
+
+/**
  * Comparison slide - Before/After or side-by-side
  */
 export interface ComparisonSlideConfig extends BaseSlideConfig {
@@ -117,15 +132,6 @@ export interface ComparisonSlideConfig extends BaseSlideConfig {
   rightContent: string;
 }
 
-/**
- * Image slide - Image with optional caption
- */
-export interface ImageSlideConfig extends BaseSlideConfig {
-  type: "image";
-  imagePath: string;
-  caption?: string;
-  imageSize?: "small" | "medium" | "large" | "full";
-}
 
 /**
  * Question slide - Engagement question
@@ -155,6 +161,33 @@ export interface StaticImageSlideConfig extends BaseSlideConfig {
   imagePath: string;
   fit?: "cover" | "contain" | "fill";
   position?: string;
+  hideDecorations?: boolean; // Hide decorative elements for cleaner look
+}
+
+/**
+ * Two Column slide - Image and text side by side
+ */
+export interface TwoColumnSlideConfig extends BaseSlideConfig {
+  type: "twoColumn";
+  imagePath: string;
+  imagePosition?: "left" | "right";
+  title: string;
+  content: string;
+  bulletPoints?: string[];
+  imageAspectRatio?: "square" | "portrait" | "landscape";
+}
+
+/**
+ * Two Row slide - Image and text stacked vertically
+ */
+export interface TwoRowSlideConfig extends BaseSlideConfig {
+  type: "twoRow";
+  imagePath: string;
+  imagePosition?: "top" | "bottom";
+  title: string;
+  content: string;
+  bulletPoints?: string[];
+  hideDecorations?: boolean; // Hide decorative elements for cleaner look
 }
 
 /**
@@ -168,11 +201,13 @@ export type SlideConfig =
   | QuoteSlideConfig
   | StatSlideConfig
   | ListSlideConfig
+  | HeavyListSlideConfig
   | ComparisonSlideConfig
-  | ImageSlideConfig
   | QuestionSlideConfig
   | TimelineSlideConfig
-  | StaticImageSlideConfig;
+  | StaticImageSlideConfig
+  | TwoColumnSlideConfig
+  | TwoRowSlideConfig;
 
 /**
  * Complete carousel configuration
@@ -192,6 +227,9 @@ export interface CarouselConfig {
 
   /** Website/handle in footer */
   website: string;
+
+  /** Optional company/personal address in footer */
+  address?: string;
 
   /** Profile initials */
   profileInitials?: string;

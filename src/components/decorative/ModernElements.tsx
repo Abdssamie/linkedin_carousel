@@ -3,25 +3,46 @@ import { ThemeConfig, createGlow } from "../../styles/themes";
 
 interface ModernElementsProps {
   theme: ThemeConfig;
+  companyLogo?: string; // Optional company logo URL/path
 }
 
 /**
  * Modern decorative elements that replace generic dots and circles
  * with sleeker tech-focused design elements
  */
-export const ModernElements: React.FC<ModernElementsProps> = ({ theme }) => {
-  // Radial glow element - positioned top-right
-  const radialGlowStyle: React.CSSProperties = {
+export const ModernElements: React.FC<ModernElementsProps> = ({ theme, companyLogo }) => {
+  // Company logo watermark - positioned top-right with glow effect
+  const logoContainerStyle: React.CSSProperties = {
     position: "absolute",
-    top: 40,
-    right: 40,
+    top: 60,
+    right: 60,
     width: 200,
     height: 200,
-    background: createGlow(theme.glow, 130),
-    opacity: 0.6,
-    borderRadius: "50%",
-    filter: "blur(2px)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     pointerEvents: "none",
+    zIndex: 2,
+  };
+
+  const logoGlowStyle: React.CSSProperties = {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    background: createGlow(theme.glow, 130),
+    opacity: 0.4,
+    borderRadius: "50%",
+    filter: "blur(3px)",
+  };
+
+  const logoImageStyle: React.CSSProperties = {
+    position: "relative",
+    width: "120px",
+    height: "120px",
+    objectFit: "contain",
+    opacity: 0.15,
+    filter: `brightness(1.2)`,
+    mixBlendMode: "lighten",
   };
 
   // Sharp corner lines - tech aesthetic
@@ -64,25 +85,27 @@ export const ModernElements: React.FC<ModernElementsProps> = ({ theme }) => {
 
   return (
     <>
-      {/* Radial glow for premium feel */}
-      <div style={radialGlowStyle} />
-      
+      {/* Company logo watermark (optional) */}
+      <div style={logoContainerStyle}>
+        <div style={logoGlowStyle} />
+      </div>
+
       {/* Sharp corner lines */}
       <svg style={cornerLinesStyle} viewBox="0 0 120 120">
-        <g stroke={theme.accent} strokeWidth="5" fill="none" opacity="0.7">
+        <g stroke={theme.accent} strokeWidth="3" fill="none" opacity="0.6">
           {/* Top-right corner */}
           <path d="M 100 0 L 120 0 L 120 20" />
-          <path d="M 80 0 L 100 0 L 100 20" strokeWidth="3" opacity="0.5" />
-          
+          <path d="M 80 0 L 100 0 L 100 20" strokeWidth="4" opacity="0.4" />
+
           {/* Bottom-left accent */}
           <path d="M 0 100 L 0 120 L 20 120" />
-          <path d="M 0 80 L 0 100 L 20 100" strokeWidth="3" opacity="0.5" />
+          <path d="M 0 80 L 20 100 L 100 20 100" strokeWidth="4" opacity="0.4" />
         </g>
       </svg>
 
       {/* Grid accent */}
       <div style={gridAccentStyle} />
-      
+
       {/* Circuit line */}
       <div style={circuitPatternStyle} />
     </>

@@ -2,162 +2,10 @@ import React from "react";
 import { Still } from "remotion";
 import { createCarousel } from "./lib/createCarousel";
 import { newExampleCarousels } from "./carousels/new-examples";
-import { completeExamples } from "./carousels/complete-examples";
 import { SlideLayout } from "./components/SlideLayout";
-import {
-  HookContent,
-  TipContent,
-  InsightContent,
-  CTAContent,
-  QuoteContent,
-  StatContent,
-  ListContent,
-  ComparisonContent,
-  ImageContent,
-  QuestionContent,
-  TimelineContent,
-  StaticImageContent,
-} from "./components/content";
-import { CarouselConfig, SlideConfig } from "./types/carousel";
-
-/**
- * Renders the appropriate content component based on slide type
- */
-const renderSlideContent = (
-  slide: SlideConfig,
-  theme: CarouselConfig["theme"],
-  profileInitials: string
-) => {
-  switch (slide.type) {
-    case "hook":
-      return (
-        <HookContent
-          headlineTop={slide.headlineTop}
-          headlineHighlight={slide.headlineHighlight}
-          theme={theme}
-          showStats={slide.showStats}
-          statValue={slide.statValue}
-          statLabel={slide.statLabel}
-        />
-      );
-
-    case "tip":
-      return (
-        <TipContent
-          number={slide.number}
-          title={slide.title}
-          description={slide.description}
-          theme={theme}
-          showQuotes={slide.showQuotes}
-        />
-      );
-
-    case "insight":
-      return (
-        <InsightContent
-          title={slide.title}
-          content={slide.content}
-          highlight={slide.highlight}
-          profileInitials={profileInitials}
-          theme={theme}
-        />
-      );
-
-    case "cta":
-      return (
-        <CTAContent
-          headline={slide.headline}
-          subheadline={slide.subheadline}
-          action={slide.action}
-          theme={theme}
-        />
-      );
-
-    case "quote":
-      return (
-        <QuoteContent
-          quote={slide.quote}
-          author={slide.author}
-          role={slide.role}
-          theme={theme}
-        />
-      );
-
-    case "stat":
-      return (
-        <StatContent
-          stat={slide.stat}
-          label={slide.label}
-          context={slide.context}
-          source={slide.source}
-          theme={theme}
-        />
-      );
-
-    case "list":
-      return (
-        <ListContent
-          title={slide.title}
-          items={slide.items}
-          theme={theme}
-          useCheckmarks={slide.useCheckmarks}
-        />
-      );
-
-    case "comparison":
-      return (
-        <ComparisonContent
-          leftLabel={slide.leftLabel}
-          leftContent={slide.leftContent}
-          rightLabel={slide.rightLabel}
-          rightContent={slide.rightContent}
-          theme={theme}
-        />
-      );
-
-    case "image":
-      return (
-        <ImageContent
-          imagePath={slide.imagePath}
-          caption={slide.caption}
-          theme={theme}
-          imageSize={slide.imageSize}
-        />
-      );
-
-    case "question":
-      return (
-        <QuestionContent
-          question={slide.question}
-          options={slide.options}
-          callToAction={slide.callToAction}
-          theme={theme}
-        />
-      );
-
-    case "timeline":
-      return (
-        <TimelineContent
-          title={slide.title}
-          steps={slide.steps}
-          theme={theme}
-          orientation={slide.orientation}
-        />
-      );
-
-    case "staticImage":
-      return (
-        <StaticImageContent
-          imagePath={slide.imagePath}
-          fit={slide.fit}
-          position={slide.position}
-        />
-      );
-
-    default:
-      return <div>Unknown slide type</div>;
-  }
-};
+import { MinimalSlideLayout } from "./components/MinimalSlideLayout";
+import { CarouselConfig } from "./types/carousel";
+import { renderSlideContent } from "./utils/renderSlideContent";
 
 /**
  * Dynamic carousel slide component that accepts config via inputProps
@@ -171,17 +19,50 @@ const DynamicCarouselSlide: React.FC<{
   const slideNumber = slideIndex + 1;
   const totalSlides = config.slides.length;
 
+  const content = renderSlideContent(slide, config.theme, config.profileInitials || "AS");
+
+  // Determine background image based on slide type
+  const getBackgroundImage = () => {
+    if (slide.type === "twoColumn") {
+      return "bgs/bg_recommended_for_two_column_content.png";
+    }
+    if (slide.type === "twoRow") {
+      return "bgs/bg_recommended_for_two_row_content.png";
+    }
+    if (slide.type === "heavyList") {
+      return "bgs/bg_heavy_content.png";
+    }
+    return "bgs/bg_recommended_for_non_header_content.png";
+  };
+
+  // Use minimal layout if specified on the slide
+  if (slide.useMinimalLayout) {
+    return (
+      <MinimalSlideLayout
+        theme={config.theme}
+        website={config.website}
+        slideNumber={config.showSlideNumbers ? slideNumber : undefined}
+        totalSlides={config.showSlideNumbers ? totalSlides : undefined}
+        backgroundImage={getBackgroundImage()}
+      >
+        {content}
+      </MinimalSlideLayout>
+    );
+  }
+
+  // Default to full layout
   return (
     <SlideLayout
       theme={config.theme}
       brandName={config.brandName}
       tagline={config.tagline}
       website={config.website}
+      address={config.address}
       slideNumber={config.showSlideNumbers ? slideNumber : undefined}
       totalSlides={config.showSlideNumbers ? totalSlides : undefined}
       profileInitials={config.profileInitials || "AS"}
     >
-      {renderSlideContent(slide, config.theme, config.profileInitials || "AS")}
+      {content}
     </SlideLayout>
   );
 };
@@ -227,6 +108,7 @@ export const RemotionRoot: React.FC = () => {
                   type: "hook",
                   headlineTop: "Example",
                   headlineHighlight: "Slide",
+                  useMinimalLayout: true,
                 },
               ],
             },
@@ -237,7 +119,6 @@ export const RemotionRoot: React.FC = () => {
 
       {/* Pre-configured example carousels */}
       {newExampleCarousels.map((carousel) => createCarousel(carousel))}
-      {completeExamples.map((carousel) => createCarousel(carousel))}
-    </>
+          </>
   );
 };

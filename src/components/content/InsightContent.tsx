@@ -78,6 +78,7 @@ export const InsightContent: React.FC<InsightContentProps> = ({
             marginBottom: "20px",
             textTransform: "uppercase",
             letterSpacing: "0.05em",
+            textShadow: `0 2px 8px rgba(0, 0, 0, 0.6)`,
           }}
         >
           {title}

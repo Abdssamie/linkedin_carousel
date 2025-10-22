@@ -1,14 +1,14 @@
 import React from "react";
-import { AbsoluteFill } from "remotion";
+import { AbsoluteFill, Img, staticFile } from "remotion";
 import "../fonts.css";
 import { getTheme, typography, spacing, ThemeKey } from "../styles/themes";
-import { ModernElements } from "./decorative/ModernElements";
 
 interface SlideLayoutProps {
   theme?: ThemeKey;
   brandName: string;
   tagline?: string;
   website: string;
+  address?: string; // Company/personal address
   slideNumber?: number;
   totalSlides?: number;
   profileInitials?: string;
@@ -21,6 +21,7 @@ export const SlideLayout: React.FC<SlideLayoutProps> = ({
   brandName,
   tagline,
   website,
+  address,
   slideNumber,
   totalSlides,
   profileInitials = "AS",
@@ -30,13 +31,14 @@ export const SlideLayout: React.FC<SlideLayoutProps> = ({
   const colors = getTheme(theme);
 
   const absContainer: React.CSSProperties = {
-    backgroundColor: colors.bg,
-    backgroundImage: `
-      linear-gradient(${colors.grid} 1px, transparent 1px),
-      linear-gradient(90deg, ${colors.grid} 1px, transparent 1px)
-    `,
-    backgroundSize: "40px 40px",
     fontFamily: typography.fontFamily.primary,
+  };
+
+  const backgroundImageStyle: React.CSSProperties = {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
   };
 
   const layoutContainer: React.CSSProperties = {
@@ -111,15 +113,29 @@ export const SlideLayout: React.FC<SlideLayoutProps> = ({
   // FOOTER STYLES
   const footerStyle: React.CSSProperties = {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: (website || address) ? "space-between" : "flex-end",
     alignItems: "center",
     marginTop: spacing['2xl'], // Optimized for carousel format
+  };
+
+  const footerLeftStyle: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing.xs,
   };
 
   const websiteStyle: React.CSSProperties = {
     fontSize: typography.sizes.body,
     fontWeight: typography.weights.semibold,
     color: colors.text,
+    textShadow: `0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.6)`,
+  };
+
+  const addressStyle: React.CSSProperties = {
+    fontSize: typography.sizes.small,
+    fontWeight: typography.weights.medium,
+    color: colors.textSecondary,
+    textShadow: `0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.6)`,
   };
 
   const slideIndicator: React.CSSProperties = {
@@ -155,8 +171,11 @@ export const SlideLayout: React.FC<SlideLayoutProps> = ({
 
   return (
     <AbsoluteFill style={absContainer}>
-      {/* Modern decorative elements */}
-      <ModernElements theme={colors} />
+      {/* Background image */}
+      <Img
+        src={staticFile("bgs/bg_recommeneded_for_slides_with_header.png")}
+        style={backgroundImageStyle}
+      />
 
       <div style={layoutContainer}>
         {/* HEADER */}
@@ -175,7 +194,12 @@ export const SlideLayout: React.FC<SlideLayoutProps> = ({
 
         {/* FOOTER */}
         <footer style={footerStyle}>
-          <div style={websiteStyle}>{website}</div>
+          {(website || address) && (
+            <div style={footerLeftStyle}>
+              {website && <div style={websiteStyle}>{website}</div>}
+              {address && <div style={addressStyle}>{address}</div>}
+            </div>
+          )}
 
           {slideNumber && totalSlides && (
             <div style={slideIndicator}>

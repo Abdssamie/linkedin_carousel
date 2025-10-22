@@ -58,6 +58,7 @@ export const TipContent: React.FC<TipContentProps> = ({
     margin: 0,
     letterSpacing: typography.letterSpacing.tight,
     fontFamily: typography.fontFamily.primary,
+    textShadow: `0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6)`,
   };
 
   const descriptionStyle: React.CSSProperties = {

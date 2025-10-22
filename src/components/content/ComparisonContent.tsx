@@ -69,10 +69,10 @@ export const ComparisonContent: React.FC<ComparisonContentProps> = ({
           border: `2px solid ${colors.text}20`,
         }}
       >
-        <div style={{ ...labelStyle, color: colors.text, opacity: 0.6 }}>
+        <div style={{ ...labelStyle, color: colors.text, opacity: 0.6, textShadow: `0 2px 8px rgba(0, 0, 0, 0.6)` }}>
           {leftLabel}
         </div>
-        <div style={{ ...contentStyle, color: colors.text, opacity: 0.7 }}>
+        <div style={{ ...contentStyle, color: colors.text, opacity: 0.7, textShadow: `0 2px 8px rgba(0, 0, 0, 0.6)` }}>
           {leftContent}
         </div>
       </div>
@@ -98,10 +98,10 @@ export const ComparisonContent: React.FC<ComparisonContentProps> = ({
           border: `3px solid ${colors.accent}`,
         }}
       >
-        <div style={{ ...labelStyle, color: colors.accent }}>
+        <div style={{ ...labelStyle, color: colors.accent, textShadow: `0 2px 8px rgba(0, 0, 0, 0.6)` }}>
           {rightLabel}
         </div>
-        <div style={{ ...contentStyle, color: colors.text }}>
+        <div style={{ ...contentStyle, color: colors.text, textShadow: `0 2px 8px rgba(0, 0, 0, 0.6)` }}>
           {rightContent}
         </div>
       </div>

@@ -39,7 +39,7 @@ export const TimelineContent: React.FC<TimelineContentProps> = ({
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          gap: "40px",
+          gap: "50px",
         }}
       >
         {title && (
@@ -61,7 +61,7 @@ export const TimelineContent: React.FC<TimelineContentProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: "24px",
+            gap: "32px",
           }}
         >
           {steps.map((step, index) => (
@@ -72,22 +72,22 @@ export const TimelineContent: React.FC<TimelineContentProps> = ({
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: "16px",
+                  gap: "20px",
                   flex: 1,
                 }}
               >
                 {/* Number circle */}
                 <div
                   style={{
-                    width: "80px",
-                    height: "80px",
+                    width: "100px",
+                    height: "100px",
                     borderRadius: "50%",
                     backgroundColor: colors.accent,
                     color: colors.text === "#FFFFFF" ? "#1A1A1A" : "#FFFFFF",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "2.5em",
+                    fontSize: "3.5em",
                     fontWeight: 900,
                   }}
                 >
@@ -97,10 +97,11 @@ export const TimelineContent: React.FC<TimelineContentProps> = ({
                 {/* Label */}
                 <div
                   style={{
-                    fontSize: "1.6em",
+                    fontSize: "2.4em",
                     fontWeight: 700,
                     color: colors.text,
                     textAlign: "center",
+                    textShadow: `0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6)`,
                   }}
                 >
                   {step.label}
@@ -109,12 +110,12 @@ export const TimelineContent: React.FC<TimelineContentProps> = ({
                 {/* Description */}
                 <div
                   style={{
-                    fontSize: "1.2em",
+                    fontSize: "1.6em",
                     fontWeight: 500,
                     color: colors.text,
-                    opacity: 0.7,
+                    opacity: 0.8,
                     textAlign: "center",
-                    lineHeight: 1.3,
+                    lineHeight: 1.4,
                   }}
                 >
                   {step.description}
@@ -125,7 +126,7 @@ export const TimelineContent: React.FC<TimelineContentProps> = ({
               {index < steps.length - 1 && (
                 <div
                   style={{
-                    fontSize: "2.5em",
+                    fontSize: "3.5em",
                     fontWeight: 700,
                     color: colors.accent,
                   }}
@@ -147,18 +148,20 @@ export const TimelineContent: React.FC<TimelineContentProps> = ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        gap: "32px",
-        maxWidth: "750px",
+        gap: "48px",
+        paddingLeft: "130px",
+        maxWidth: "800px",
       }}
     >
       {title && (
         <h2
           style={{
-            fontSize: "3.5em",
+            fontSize: "4em",
             fontWeight: 900,
             color: colors.text,
             margin: 0,
-            marginBottom: "16px",
+            marginBottom: "20px",
+            textShadow: `0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6)`,
           }}
         >
           {title}
@@ -170,22 +173,22 @@ export const TimelineContent: React.FC<TimelineContentProps> = ({
           key={index}
           style={{
             display: "flex",
-            gap: "24px",
+            gap: "32px",
             alignItems: "flex-start",
           }}
         >
           {/* Number circle */}
           <div
             style={{
-              width: "70px",
-              height: "70px",
+              width: "95px",
+              height: "95px",
               borderRadius: "50%",
               backgroundColor: colors.accent,
               color: colors.text === "#FFFFFF" ? "#1A1A1A" : "#FFFFFF",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "2.2em",
+              fontSize: "3em",
               fontWeight: 900,
               flexShrink: 0,
             }}
@@ -194,24 +197,25 @@ export const TimelineContent: React.FC<TimelineContentProps> = ({
           </div>
 
           {/* Content */}
-          <div style={{ flex: 1, paddingTop: "8px" }}>
+          <div style={{ flex: 1, paddingTop: "10px" }}>
             <div
               style={{
-                fontSize: "2em",
+                fontSize: "2.6em",
                 fontWeight: 700,
                 color: colors.text,
-                marginBottom: "8px",
+                marginBottom: "12px",
+                textShadow: `0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6)`,
               }}
             >
               {step.label}
             </div>
             <div
               style={{
-                fontSize: "1.5em",
+                fontSize: "1.9em",
                 fontWeight: 500,
                 color: colors.text,
-                opacity: 0.7,
-                lineHeight: 1.4,
+                opacity: 0.8,
+                lineHeight: 1.5,
               }}
             >
               {step.description}
