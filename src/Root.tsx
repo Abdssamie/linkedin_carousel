@@ -88,35 +88,6 @@ const GenericCarouselSlide: React.FC<{
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      {/* Generic composition for dynamic rendering from Python backend */}
-      <Still
-        id="carousel-slide"
-        component={GenericCarouselSlide}
-        width={1080}
-        height={1080}
-        defaultProps={{
-          inputProps: {
-            config: {
-              id: "example",
-              theme: "cream",
-              brandName: "Example",
-              website: "@example",
-              profileInitials: "EX",
-              showSlideNumbers: true,
-              slides: [
-                {
-                  type: "hook",
-                  headlineTop: "Example",
-                  headlineHighlight: "Slide",
-                  useMinimalLayout: true,
-                },
-              ],
-            },
-            slideIndex: 0,
-          },
-        }}
-      />
-
       {/* Pre-configured example carousels */}
       {newExampleCarousels.map((carousel) => createCarousel(carousel))}
           </>
