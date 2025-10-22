@@ -31,7 +31,7 @@ export const HookContent: React.FC<HookContentProps> = ({
     flexDirection: "column",
     justifyContent: "center",
     gap: spacing.xl,
-    maxWidth: "900px", // Constraint for better readability
+    marginLeft: spacing["4xl"]
   };
 
   const headlineStyle: React.CSSProperties = {

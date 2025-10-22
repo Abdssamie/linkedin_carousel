@@ -1,4 +1,4 @@
-import { CarouselConfig } from "../types/carousel";
+import { CarouselConfig } from "../../types/carousel";
 
 /**
  * Complete Showcase - All slide types in one carousel

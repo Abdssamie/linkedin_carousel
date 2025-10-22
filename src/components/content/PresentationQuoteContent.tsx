@@ -1,12 +1,11 @@
 import React from "react";
-import { spacing } from "../../styles/themes";
 
 /**
- * QuoteContent - Large quote display for testimonials and powerful statements
- * Use for: Customer testimonials, expert quotes, motivational content
+ * PresentationQuoteContent - Centered quote display for presentations
+ * Use for: Customer testimonials, expert quotes, motivational content in presentations
  */
 
-interface QuoteContentProps {
+interface PresentationQuoteContentProps {
   quote: string;
   author: string;
   role?: string; // e.g., "CEO at TechCorp", "Solopreneur"
@@ -20,7 +19,7 @@ const themes = {
   purple: { text: "#2D1B69", accent: "#7C3AED" },
 };
 
-export const QuoteContent: React.FC<QuoteContentProps> = ({
+export const PresentationQuoteContent: React.FC<PresentationQuoteContentProps> = ({
   quote,
   author,
   role,
@@ -59,10 +58,10 @@ export const QuoteContent: React.FC<QuoteContentProps> = ({
           fontSize: "3.2em",
           fontWeight: 600,
           color: colors.text,
-          paddingLeft: spacing.xl,
           lineHeight: 1.4,
           margin: 0,
-          letterSpacing: "-0.02em",
+          fontStyle: "italic",
+          letterSpacing: "-0.01em",
         }}
       >
         {quote}

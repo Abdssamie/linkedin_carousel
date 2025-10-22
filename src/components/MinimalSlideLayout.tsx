@@ -49,6 +49,7 @@ export const MinimalSlideLayout: React.FC<MinimalSlideLayoutProps> = ({
     flexDirection: "column",
     justifyContent: "center",
     position: "relative",
+    paddingLeft: spacing.md,
     paddingTop: spacing.md, // Add small top padding to move content up slightly
   };
 

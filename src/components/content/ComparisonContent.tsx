@@ -1,4 +1,5 @@
 import React from "react";
+import { spacing } from "../../styles/themes";
 
 /**
  * ComparisonContent - Before/After or side-by-side comparison
@@ -56,6 +57,7 @@ export const ComparisonContent: React.FC<ComparisonContentProps> = ({
       style={{
         display: "flex",
         gap: "32px",
+        marginLeft: spacing.xl,
         alignItems: "stretch",
         justifyContent: "center",
         maxWidth: "900px",

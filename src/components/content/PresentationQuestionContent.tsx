@@ -1,11 +1,11 @@
 import React from "react";
 
 /**
- * QuestionContent - Engagement question with optional choices
- * Use for: Polls, questions, engagement prompts, discussion starters
+ * PresentationQuestionContent - Centered engagement question for presentations
+ * Use for: Polls, questions, engagement prompts, discussion starters in presentations
  */
 
-interface QuestionContentProps {
+interface PresentationQuestionContentProps {
   question: string;
   options?: string[]; // Optional multiple choice options
   callToAction?: string; // e.g., "Comment your answer below"
@@ -19,7 +19,7 @@ const themes = {
   purple: { text: "#2D1B69", accent: "#7C3AED" },
 };
 
-export const QuestionContent: React.FC<QuestionContentProps> = ({
+export const PresentationQuestionContent: React.FC<PresentationQuestionContentProps> = ({
   question,
   options,
   callToAction,
@@ -36,6 +36,7 @@ export const QuestionContent: React.FC<QuestionContentProps> = ({
         alignItems: "center",
         gap: "32px",
         textAlign: "center",
+        maxWidth: "900px",
         padding: "0 40px",
       }}
     >

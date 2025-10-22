@@ -30,6 +30,7 @@ export const TipContent: React.FC<TipContentProps> = ({
     justifyContent: "center",
     gap: spacing.xl,
     maxWidth: "850px", // Optimal reading width
+    marginLeft: spacing["2xl"]
   };
 
   const quotesStyle: React.CSSProperties = {

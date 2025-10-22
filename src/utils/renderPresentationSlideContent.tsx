@@ -6,19 +6,19 @@ import {
   HookContent,
   InsightContent,
   ListContent,
-  QuestionContent,
-  QuoteContent,
+  PresentationQuestionContent,
+  PresentationQuoteContent,
+  PresentationTimelineContent,
   StatContent,
-  TimelineContent,
   TipContent,
   TwoColumnContent,
   TwoRowContent,
 } from "../components/content";
 
 /**
- * Renders the appropriate content component based on slide type
+ * Renders the appropriate content component for presentations (centered versions)
  */
-export const renderSlideContent = (
+export const renderPresentationSlideContent = (
   slide: SlideConfig,
   theme: CarouselConfig["theme"],
   profileInitials: string,
@@ -70,7 +70,7 @@ export const renderSlideContent = (
 
     case "quote":
       return (
-        <QuoteContent
+        <PresentationQuoteContent
           quote={slide.quote}
           author={slide.author}
           role={slide.role}
@@ -123,7 +123,7 @@ export const renderSlideContent = (
 
     case "question":
       return (
-        <QuestionContent
+        <PresentationQuestionContent
           question={slide.question}
           options={slide.options}
           callToAction={slide.callToAction}
@@ -133,7 +133,7 @@ export const renderSlideContent = (
 
     case "timeline":
       return (
-        <TimelineContent
+        <PresentationTimelineContent
           title={slide.title}
           steps={slide.steps}
           theme={theme}

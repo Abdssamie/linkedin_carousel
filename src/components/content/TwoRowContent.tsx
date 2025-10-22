@@ -104,8 +104,8 @@ export const TwoRowContent: React.FC<TwoRowContentProps> = ({
   const bulletListStyle: React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
-    gap: spacing.md,
-    marginTop: spacing.md,
+    gap: spacing.sm,
+    marginTop: spacing.xs,
   };
 
   const bulletItemStyle: React.CSSProperties = {
