@@ -7,39 +7,18 @@
 import React from "react";
 import { AbsoluteFill, Img, staticFile } from "remotion";
 import "../fonts.css";
-import { ThemeKey, typography, spacing } from "../styles/themes";
+import { typography, spacing } from "../styles/themes";
 import { DiagonalPattern } from "../types/presentation";
 
 /**
  * Props for DiagonalSlideLayout component
  */
 interface DiagonalSlideLayoutProps {
-  /** Visual theme (inherited from presentation config) */
-  theme?: ThemeKey;
-
-  /** Brand name for header */
-  brandName: string;
-
-  /** Optional tagline */
-  tagline?: string;
-
-  /** Website/handle for footer */
-  website: string;
-
-  /** Current slide number */
-  slideNumber: number;
-
-  /** Total number of slides */
-  totalSlides: number;
-
   /** Diagonal pattern variant */
   diagonalPattern?: DiagonalPattern;
 
   /** Image path (relative to public folder) */
   imagePath?: string;
-
-  /** Image position */
-  imagePosition?: "left" | "right" | "top" | "bottom";
 
   /** Slide content */
   children: React.ReactNode;
@@ -256,15 +235,8 @@ function getImageBoundingBox(pattern: DiagonalPattern): {
  * No header or footer - full-screen content with diagonal sections
  */
 export const DiagonalSlideLayout: React.FC<DiagonalSlideLayoutProps> = ({
-  theme = "dark",
-  brandName,
-  tagline,
-  website,
-  slideNumber,
-  totalSlides,
   diagonalPattern = "left",
   imagePath,
-  imagePosition = "right",
   children,
 }) => {
   // Base container style
@@ -371,7 +343,7 @@ export const DiagonalSlideLayout: React.FC<DiagonalSlideLayoutProps> = ({
               src={staticFile(imagePath)}
               style={imageStyle}
               onError={(e) => {
-                console.warn(`Failed to load image: ${imagePath}`);
+                console.warn(`Failed to load image: ${imagePath}, ${e}`);
               }}
             />
           </div>

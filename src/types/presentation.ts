@@ -101,26 +101,63 @@ type ImageSlideWithNotes = (
 };
 
 /**
+ * Presentation-only slide types
+ */
+
+export interface AgendaPresentationSlide {
+  type: "agenda";
+  title?: string;
+  items: Array<{ title: string; duration?: string }>;
+  speakerNotes?: string;
+  diagonalPattern?: DiagonalPattern;
+}
+
+export interface KeyTakeawayPresentationSlide {
+  type: "keyTakeaway";
+  title?: string;
+  takeaways: string[];
+  speakerNotes?: string;
+  diagonalPattern?: DiagonalPattern;
+}
+
+export interface TeamPresentationSlide {
+  type: "team";
+  title?: string;
+  members: Array<{ name: string; role: string; initials: string }>;
+  speakerNotes?: string;
+  diagonalPattern?: DiagonalPattern;
+}
+
+export interface ThankYouPresentationSlide {
+  type: "thankYou";
+  headline?: string;
+  subheadline?: string;
+  contactInfo?: string[];
+  speakerNotes?: string;
+  diagonalPattern?: DiagonalPattern;
+}
+
+/**
  * Presentation-specific slide configuration
  * Union of compatible slide types with speaker notes and optional diagonal layouts
  */
-export type PresentationSlideConfig = BasePresentationSlide | ImageSlideWithNotes;
+export type PresentationSlideConfig = 
+  | BasePresentationSlide 
+  | ImageSlideWithNotes
+  | AgendaPresentationSlide
+  | KeyTakeawayPresentationSlide
+  | TeamPresentationSlide
+  | ThankYouPresentationSlide;
 
 /**
  * Complete presentation configuration
  * Extends CarouselConfig with presentation-specific settings
  */
-export interface PresentationConfig extends Omit<CarouselConfig, "slides" | "showSlideNumbers"> {
+export interface PresentationConfig extends Omit<CarouselConfig, "slides"> {
   /**
    * Format identifier - must be "presentation"
    */
   format: "presentation";
-
-  /**
-   * Always true for presentations
-   * Page numbers are required for professional presentations
-   */
-  showPageNumbers: true;
 
   /**
    * Presentation slides with speaker notes support

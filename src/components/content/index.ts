@@ -20,6 +20,14 @@ export { TwoColumnContent } from "./TwoColumnContent";
 export { TwoRowContent } from "./TwoRowContent";
 
 // Presentation-specific centered versions
+export { PresentationHookContent } from "./PresentationHookContent";
 export { PresentationQuoteContent } from "./PresentationQuoteContent";
 export { PresentationQuestionContent } from "./PresentationQuestionContent";
 export { PresentationTimelineContent } from "./PresentationTimelineContent";
+export { PresentationListContent } from "./PresentationListContent";
+
+// Presentation-specific slide types
+export { AgendaContent } from "./AgendaContent";
+export { KeyTakeawayContent } from "./KeyTakeawayContent";
+export { TeamContent } from "./TeamContent";
+export { ThankYouContent } from "./ThankYouContent";

@@ -13,14 +13,14 @@ const PresentationSlideComponent: React.FC<{
 }> = ({ config, slideIndex }) => {
   const slide = config.slides[slideIndex];
   const slideNumber = slideIndex + 1;
-  const totalSlides = config.slides.length;
+  // const totalSlides = config.slides.length;
 
-  const content = renderPresentationSlideContent(slide, config.theme, config.profileInitials || "AS");
+  const content = renderPresentationSlideContent(slide, "dark", config.profileInitials || "AS");
 
   // Validate and fallback for diagonal pattern
   const validPatterns = ["left", "right", "incline-right", "incline-left", "none"];
   let diagonalPattern = "diagonalPattern" in slide ? slide.diagonalPattern || "left" : "left";
-  
+
   if ("diagonalPattern" in slide && slide.diagonalPattern && !validPatterns.includes(slide.diagonalPattern)) {
     console.warn(
       `Invalid diagonal pattern "${slide.diagonalPattern}" on slide ${slideNumber}. Falling back to "left".`
@@ -30,7 +30,7 @@ const PresentationSlideComponent: React.FC<{
 
   // Extract image path and position (may come from slide-specific properties or diagonal layout properties)
   const imagePath = "imagePath" in slide ? slide.imagePath : undefined;
-  const imagePosition = "imagePosition" in slide ? slide.imagePosition : undefined;
+  // const imagePosition = "imagePosition" in slide ? slide.imagePosition : undefined;
 
   // Warn if image path is provided but may fail to load
   if (imagePath) {
@@ -45,15 +45,8 @@ const PresentationSlideComponent: React.FC<{
 
   return (
     <DiagonalSlideLayout
-      theme={config.theme}
-      brandName={config.brandName}
-      tagline={config.tagline}
-      website={config.website}
-      slideNumber={slideNumber}
-      totalSlides={totalSlides}
       diagonalPattern={diagonalPattern}
       imagePath={imagePath}
-      imagePosition={imagePosition}
     >
       {content}
     </DiagonalSlideLayout>
@@ -118,21 +111,15 @@ export function createPresentation(
     throw new Error("website is required for presentations");
   }
 
-  // Validate slide count (presentations typically 3-50 slides)
-  if (config.slides.length < 3 || config.slides.length > 50) {
+  // Validate slide count (presentations typically 2-50 slides)
+  if (config.slides.length < 2 || config.slides.length > 50) {
     throw new Error(
-      `Presentation must have 3-50 slides (found ${config.slides.length})`
+      `Presentation must have 2-50 slides (found ${config.slides.length})`
     );
   }
 
-  // Force showPageNumbers to true (always required for presentations)
-  const presentationConfig: PresentationConfig = {
-    ...config,
-    showPageNumbers: true,
-  };
-
   // Create a Still for each slide at presentation dimensions (1920x1080)
-  return presentationConfig.slides.map((_, index) => {
+  return config.slides.map((_, index) => {
     const slideNumber = index + 1;
     const stillId = `${config.id}-slide-${slideNumber}`;
 
@@ -144,7 +131,7 @@ export function createPresentation(
         width={PRESENTATION_DIMENSIONS.width}
         height={PRESENTATION_DIMENSIONS.height}
         defaultProps={{
-          config: presentationConfig,
+          config,
           slideIndex: index,
         }}
       />

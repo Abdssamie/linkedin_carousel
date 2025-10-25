@@ -8,12 +8,10 @@ import { PresentationConfig } from "../../types/presentation";
 export const businessPitchPresentation: PresentationConfig = {
   id: "business-pitch",
   format: "presentation",
-  theme: "dark",
   brandName: "OPC.AI",
   tagline: "One Person Company",
   website: "@opc.ai",
   profileInitials: "AS",
-  showPageNumbers: true,
   slides: [
     // Slide 1: Opening hook with image
     {

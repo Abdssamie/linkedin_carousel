@@ -32,8 +32,6 @@ export type ContentType =
  */
 interface BaseSlideConfig {
   type: ContentType;
-  /** Use minimal layout for this slide (no header, minimal footer padding) */
-  useMinimalLayout?: boolean;
 }
 
 /**
@@ -216,9 +214,6 @@ export interface CarouselConfig {
   /** Unique identifier (kebab-case) */
   id: string;
 
-  /** Visual theme */
-  theme: ThemeType;
-
   /** Brand name in header */
   brandName: string;
 
@@ -228,14 +223,8 @@ export interface CarouselConfig {
   /** Website/handle in footer */
   website: string;
 
-  /** Optional company/personal address in footer */
-  address?: string;
-
   /** Profile initials */
   profileInitials?: string;
-
-  /** Whether to show slide numbers */
-  showSlideNumbers?: boolean;
 
   /** Array of slides (2-10 slides) */
   slides: SlideConfig[];

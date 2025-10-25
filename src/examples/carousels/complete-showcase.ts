@@ -6,13 +6,10 @@ import { CarouselConfig } from "../../types/carousel";
  */
 export const completeShowcase: CarouselConfig = {
   id: "complete-showcase",
-  theme: "dark",
   brandName: "OPC.AI",
   tagline: "Product Features",
   website: "@opc.ai",
-  address: "San Francisco, CA",
   profileInitials: "AS",
-  showSlideNumbers: true,
   slides: [
     // 1. Hook slide
     {
@@ -29,12 +26,10 @@ export const completeShowcase: CarouselConfig = {
       number: "01",
       title: "Getting Started",
       description: "This carousel demonstrates all available slide types and layouts in our system.",
-      useMinimalLayout: true,
     },
     // 3. List slide
     {
       type: "list",
-      useMinimalLayout: true,
       title: "Key Features",
       items: [
         "Multiple content layouts",
@@ -47,7 +42,7 @@ export const completeShowcase: CarouselConfig = {
     // 4. Heavy List slide
     {
       type: "heavyList",
-      useMinimalLayout: true,
+
       title: "Enterprise Platform Features",
       description: "Our comprehensive platform includes everything you need to build, deploy, and scale modern applications.",
       items: [
@@ -62,7 +57,7 @@ export const completeShowcase: CarouselConfig = {
     // 5. Two Column slide
     {
       type: "twoColumn",
-      useMinimalLayout: true,
+
       imagePath: "portrait.jpg",
       imagePosition: "left",
       title: "Visual Content",
@@ -77,7 +72,7 @@ export const completeShowcase: CarouselConfig = {
     // 5. Two Column slide
     {
       type: "twoColumn",
-      useMinimalLayout: true,
+
       imagePath: "square.jpg",
       imagePosition: "right",
       title: "Visual Content",
@@ -92,7 +87,7 @@ export const completeShowcase: CarouselConfig = {
     // 6. Two Row slide
     {
       type: "twoRow",
-      useMinimalLayout: true,
+
       imagePath: "landscape.jpg",
       imagePosition: "top",
       title: "Landscape Images",

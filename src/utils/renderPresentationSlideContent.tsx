@@ -1,32 +1,38 @@
-import { CarouselConfig, SlideConfig } from "../types/carousel";
 import {
+  AgendaContent,
   ComparisonContent,
   CTAContent,
   HeavyListContent,
-  HookContent,
   InsightContent,
+  KeyTakeawayContent,
   ListContent,
+  PresentationHookContent,
+  PresentationListContent,
   PresentationQuestionContent,
   PresentationQuoteContent,
   PresentationTimelineContent,
   StatContent,
+  TeamContent,
+  ThankYouContent,
   TipContent,
   TwoColumnContent,
   TwoRowContent,
 } from "../components/content";
+import { PresentationSlideConfig } from "../types/presentation";
+import { ThemeKey } from "../styles/themes";
 
 /**
  * Renders the appropriate content component for presentations (centered versions)
  */
 export const renderPresentationSlideContent = (
-  slide: SlideConfig,
-  theme: CarouselConfig["theme"],
+  slide: PresentationSlideConfig,
+  theme: ThemeKey = "dark",
   profileInitials: string,
 ) => {
   switch (slide.type) {
     case "hook":
       return (
-        <HookContent
+        <PresentationHookContent
           headlineTop={slide.headlineTop}
           headlineHighlight={slide.headlineHighlight}
           theme={theme}
@@ -91,7 +97,7 @@ export const renderPresentationSlideContent = (
 
     case "list":
       return (
-        <ListContent
+        <PresentationListContent
           title={slide.title}
           items={slide.items}
           theme={theme}
@@ -162,6 +168,43 @@ export const renderPresentationSlideContent = (
           title={slide.title}
           content={slide.content}
           bulletPoints={slide.bulletPoints}
+          theme={theme}
+        />
+      );
+
+    case "agenda":
+      return (
+        <AgendaContent
+          title={slide.title}
+          items={slide.items}
+          theme={theme}
+        />
+      );
+
+    case "keyTakeaway":
+      return (
+        <KeyTakeawayContent
+          title={slide.title}
+          takeaways={slide.takeaways}
+          theme={theme}
+        />
+      );
+
+    case "team":
+      return (
+        <TeamContent
+          title={slide.title}
+          members={slide.members}
+          theme={theme}
+        />
+      );
+
+    case "thankYou":
+      return (
+        <ThankYouContent
+          headline={slide.headline}
+          subheadline={slide.subheadline}
+          contactInfo={slide.contactInfo}
           theme={theme}
         />
       );

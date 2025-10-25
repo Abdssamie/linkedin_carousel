@@ -1,4 +1,4 @@
-import { CarouselConfig, SlideConfig } from "../types/carousel";
+import { SlideConfig } from "../types/carousel";
 import {
   ComparisonContent,
   CTAContent,
@@ -14,13 +14,14 @@ import {
   TwoColumnContent,
   TwoRowContent,
 } from "../components/content";
+import { ThemeKey } from "../styles/themes";
 
 /**
  * Renders the appropriate content component based on slide type
  */
 export const renderSlideContent = (
   slide: SlideConfig,
-  theme: CarouselConfig["theme"],
+  theme: ThemeKey = "dark",
   profileInitials: string,
 ) => {
   switch (slide.type) {

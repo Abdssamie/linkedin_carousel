@@ -35,7 +35,7 @@ export const PresentationQuoteContent: React.FC<PresentationQuoteContentProps> =
         justifyContent: "center",
         alignItems: "center",
         gap: "40px",
-        maxWidth: "900px",
+        maxWidth: "1150px",
         textAlign: "center",
       }}
     >

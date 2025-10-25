@@ -4,4 +4,4 @@
  */
 
 export { businessPitchPresentation } from "./business-pitch";
-export { trainingDeckPresentation } from "./training-deck";
+export { companyOverviewPresentation } from "./company-overview";

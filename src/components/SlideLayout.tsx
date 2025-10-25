@@ -21,7 +21,6 @@ export const SlideLayout: React.FC<SlideLayoutProps> = ({
   brandName,
   tagline,
   website,
-  address,
   slideNumber,
   totalSlides,
   profileInitials = "AS",
@@ -113,7 +112,7 @@ export const SlideLayout: React.FC<SlideLayoutProps> = ({
   // FOOTER STYLES
   const footerStyle: React.CSSProperties = {
     display: "flex",
-    justifyContent: (website || address) ? "space-between" : "flex-end",
+    justifyContent: website ? "space-between" : "flex-end",
     alignItems: "center",
     marginTop: spacing['2xl'], // Optimized for carousel format
   };
@@ -128,13 +127,6 @@ export const SlideLayout: React.FC<SlideLayoutProps> = ({
     fontSize: typography.sizes.body,
     fontWeight: typography.weights.semibold,
     color: colors.text,
-    textShadow: `0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.6)`,
-  };
-
-  const addressStyle: React.CSSProperties = {
-    fontSize: typography.sizes.small,
-    fontWeight: typography.weights.medium,
-    color: colors.textSecondary,
     textShadow: `0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.6)`,
   };
 
@@ -173,7 +165,7 @@ export const SlideLayout: React.FC<SlideLayoutProps> = ({
     <AbsoluteFill style={absContainer}>
       {/* Background image */}
       <Img
-        src={staticFile("bgs/bg_recommeneded_for_slides_with_header.png")}
+        src={staticFile("bgs/bg_recommended_for_slides_with_header.png")}
         style={backgroundImageStyle}
       />
 
@@ -194,10 +186,9 @@ export const SlideLayout: React.FC<SlideLayoutProps> = ({
 
         {/* FOOTER */}
         <footer style={footerStyle}>
-          {(website || address) && (
+          {(website) && (
             <div style={footerLeftStyle}>
               {website && <div style={websiteStyle}>{website}</div>}
-              {address && <div style={addressStyle}>{address}</div>}
             </div>
           )}
 

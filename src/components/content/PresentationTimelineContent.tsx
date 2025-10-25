@@ -40,13 +40,15 @@ export const PresentationTimelineContent: React.FC<PresentationTimelineContentPr
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          gap: "50px",
+          gap: "70px",
+          maxWidth: "1600px",
+          margin: "0 auto",
         }}
       >
         {title && (
           <h2
             style={{
-              fontSize: "3.5em",
+              fontSize: "4.5em",
               fontWeight: 900,
               color: colors.text,
               textAlign: "center",
@@ -62,7 +64,8 @@ export const PresentationTimelineContent: React.FC<PresentationTimelineContentPr
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: "32px",
+            gap: "48px",
+            width: "100%",
           }}
         >
           {steps.map((step, index) => (
@@ -73,22 +76,22 @@ export const PresentationTimelineContent: React.FC<PresentationTimelineContentPr
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: "20px",
+                  gap: "28px",
                   flex: 1,
                 }}
               >
                 {/* Number circle */}
                 <div
                   style={{
-                    width: "100px",
-                    height: "100px",
+                    width: "140px",
+                    height: "140px",
                     borderRadius: "50%",
                     backgroundColor: colors.accent,
                     color: colors.text === "#FFFFFF" ? "#1A1A1A" : "#FFFFFF",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "3.5em",
+                    fontSize: "5em",
                     fontWeight: 900,
                   }}
                 >
@@ -98,7 +101,7 @@ export const PresentationTimelineContent: React.FC<PresentationTimelineContentPr
                 {/* Label */}
                 <div
                   style={{
-                    fontSize: "2.4em",
+                    fontSize: "3.2em",
                     fontWeight: 700,
                     color: colors.text,
                     textAlign: "center",
@@ -111,10 +114,10 @@ export const PresentationTimelineContent: React.FC<PresentationTimelineContentPr
                 {/* Description */}
                 <div
                   style={{
-                    fontSize: "1.6em",
+                    fontSize: "2em",
                     fontWeight: 500,
                     color: colors.text,
-                    opacity: 0.8,
+                    opacity: 0.85,
                     textAlign: "center",
                     lineHeight: 1.4,
                   }}
@@ -127,7 +130,7 @@ export const PresentationTimelineContent: React.FC<PresentationTimelineContentPr
               {index < steps.length - 1 && (
                 <div
                   style={{
-                    fontSize: "3.5em",
+                    fontSize: "4.5em",
                     fontWeight: 700,
                     color: colors.accent,
                   }}
@@ -151,7 +154,7 @@ export const PresentationTimelineContent: React.FC<PresentationTimelineContentPr
         justifyContent: "center",
         alignItems: "center",
         gap: "48px",
-        maxWidth: "800px",
+        maxWidth: "900px",
       }}
     >
       {title && (

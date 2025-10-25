@@ -2,12 +2,11 @@ import React from "react";
 import { getTheme, typography, spacing, ThemeKey } from "../../styles/themes";
 
 /**
- * HookContent - Opening slide to grab attention
- * Use for: Title slides, bold statements, main value proposition
- * Optimized for modern tech aesthetic with improved readability
+ * PresentationHookContent - Opening slide for presentations (centered)
+ * Use for: Title slides, bold statements, main value proposition in presentations
  */
 
-interface HookContentProps {
+interface PresentationHookContentProps {
   headlineTop: string;
   headlineHighlight: string;
   theme: ThemeKey;
@@ -16,7 +15,7 @@ interface HookContentProps {
   statLabel?: string;
 }
 
-export const HookContent: React.FC<HookContentProps> = ({
+export const PresentationHookContent: React.FC<PresentationHookContentProps> = ({
   headlineTop,
   headlineHighlight,
   theme,
@@ -30,8 +29,9 @@ export const HookContent: React.FC<HookContentProps> = ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    alignItems: "center",
     gap: spacing.xl,
-    marginLeft: spacing["4xl"]
+    textAlign: "center",
   };
 
   const headlineStyle: React.CSSProperties = {
@@ -47,11 +47,11 @@ export const HookContent: React.FC<HookContentProps> = ({
 
   const highlightStyle: React.CSSProperties = {
     backgroundColor: colors.text,
-    color: colors.bg, // Inverted for contrast
+    color: colors.bg,
     padding: `${spacing.md} ${spacing.xl}`,
     display: "inline-block",
     marginTop: spacing.lg,
-    borderRadius: '8px', // Modern rounded corners
+    borderRadius: '8px',
     border: `3px solid ${colors.accent}`,
   };
 
@@ -60,10 +60,11 @@ export const HookContent: React.FC<HookContentProps> = ({
     gap: spacing.lg,
     alignItems: "baseline",
     marginTop: spacing.lg,
+    justifyContent: "center",
   };
 
   const statValueStyle: React.CSSProperties = {
-    fontSize: '4.5rem', // Slightly larger for impact
+    fontSize: '4.5rem',
     fontWeight: typography.weights.black,
     color: colors.accent,
     lineHeight: typography.lineHeights.tight,

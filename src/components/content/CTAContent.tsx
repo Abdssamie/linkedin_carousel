@@ -47,7 +47,8 @@ export const CTAContent: React.FC<CTAContentProps> = ({
   const subheadlineStyle: React.CSSProperties = {
     fontSize: typography.sizes.h3,
     fontWeight: typography.weights.regular,
-    color: colors.textSecondary,
+    color: colors.text,
+    opacity: 0.9,
     lineHeight: typography.lineHeights.relaxed,
     margin: 0,
     maxWidth: "600px",
