@@ -59,7 +59,6 @@ export const completeShowcase: CarouselConfig = {
       type: "twoColumn",
 
       imagePath: "portrait.jpg",
-      imagePosition: "left",
       title: "Visual Content",
       content: "Combine images with text to create engaging slides that tell your story effectively.",
       bulletPoints: [
@@ -74,7 +73,6 @@ export const completeShowcase: CarouselConfig = {
       type: "twoColumn",
 
       imagePath: "square.jpg",
-      imagePosition: "right",
       title: "Visual Content",
       content: "Combine images with text to create engaging slides that tell your story effectively.",
       bulletPoints: [

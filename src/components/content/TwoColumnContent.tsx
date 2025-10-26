@@ -9,17 +9,15 @@ import { getTheme, typography, spacing, ThemeKey } from "../../styles/themes";
 
 interface TwoColumnContentProps {
   imagePath: string;
-  imagePosition?: "left" | "right";
   title: string;
   content: string;
   bulletPoints?: string[];
   theme: ThemeKey;
-  imageAspectRatio?: "square" | "portrait" | "landscape"; // Simple aspect ratio control
+  imageAspectRatio?: "square" | "portrait"; // Simple aspect ratio control
 }
 
 export const TwoColumnContent: React.FC<TwoColumnContentProps> = ({
   imagePath,
-  imagePosition = "left",
   title,
   content,
   bulletPoints,
@@ -58,7 +56,7 @@ export const TwoColumnContent: React.FC<TwoColumnContentProps> = ({
 
   const columnsContainerStyle: React.CSSProperties = {
     display: "flex",
-    flexDirection: imagePosition === "left" ? "row" : "row-reverse",
+    flexDirection: imageAspectRatio === "portrait" ? "row" : "row-reverse",
     gap: spacing.xl,
     alignItems: "center",
     width: "100%",

@@ -168,11 +168,10 @@ export interface StaticImageSlideConfig extends BaseSlideConfig {
 export interface TwoColumnSlideConfig extends BaseSlideConfig {
   type: "twoColumn";
   imagePath: string;
-  imagePosition?: "left" | "right";
   title: string;
   content: string;
   bulletPoints?: string[];
-  imageAspectRatio?: "square" | "portrait" | "landscape";
+  imageAspectRatio?: "square" | "portrait";
 }
 
 /**

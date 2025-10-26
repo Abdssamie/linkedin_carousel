@@ -146,7 +146,6 @@ export const renderSlideContent = (
       return (
         <TwoColumnContent
           imagePath={slide.imagePath}
-          imagePosition={slide.imagePosition}
           title={slide.title}
           content={slide.content}
           bulletPoints={slide.bulletPoints}
