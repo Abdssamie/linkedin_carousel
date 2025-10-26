@@ -26,6 +26,10 @@ export const TwoRowContent: React.FC<TwoRowContentProps> = ({
   theme,
 }) => {
   const colors = getTheme(theme);
+  
+  // Determine if imagePath is a URL or local file
+  const isExternalUrl = imagePath.startsWith('http://') || imagePath.startsWith('https://');
+  const imageSrc = isExternalUrl ? imagePath : staticFile(imagePath);
 
   const containerStyle: React.CSSProperties = {
     display: "flex",
@@ -136,7 +140,7 @@ export const TwoRowContent: React.FC<TwoRowContentProps> = ({
         {/* Image Row */}
         <div style={imageRowStyle}>
           <div style={imageContainerStyle}>
-            <Img src={staticFile(imagePath)} style={imageStyle} />
+            <Img src={imageSrc} style={imageStyle} />
           </div>
         </div>
 

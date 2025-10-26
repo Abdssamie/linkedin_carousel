@@ -129,6 +129,10 @@ export const TwoColumnContent: React.FC<TwoColumnContentProps> = ({
     marginTop: "10px",
   };
 
+  // Determine if imagePath is a URL or local file
+  const isExternalUrl = imagePath.startsWith('http://') || imagePath.startsWith('https://');
+  const imageSrc = isExternalUrl ? imagePath : staticFile(imagePath);
+
   return (
     <div style={containerStyle}>
       {/* Title at the top */}
@@ -139,7 +143,7 @@ export const TwoColumnContent: React.FC<TwoColumnContentProps> = ({
         {/* Image Column */}
         <div style={imageColumnStyle}>
           <div style={imageContainerStyle}>
-            <Img src={staticFile(imagePath)} style={imageStyle} />
+            <Img src={imageSrc} style={imageStyle} />
           </div>
         </div>
 
