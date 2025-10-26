@@ -11,7 +11,7 @@ import {
   PresentationQuoteContent,
   PresentationTimelineContent,
   StatContent,
-  TeamContent,
+  PresentationTeamContent,
   ThankYouContent,
   TipContent,
   TwoColumnContent,
@@ -190,7 +190,7 @@ export const renderPresentationSlideContent = (
 
     case "team":
       return (
-        <TeamContent
+        <PresentationTeamContent
           title={slide.title}
           members={slide.members}
           theme={theme}

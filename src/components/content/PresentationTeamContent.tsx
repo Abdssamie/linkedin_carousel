@@ -1,7 +1,7 @@
 import React from "react";
 
 /**
- * TeamContent - Team member showcase
+ * PresentationPresentationTeamContent - Team member showcase
  * Use for: Team introductions, speaker bios, about us slides
  */
 
@@ -11,7 +11,7 @@ interface TeamMember {
   initials: string;
 }
 
-interface TeamContentProps {
+interface PresentationTeamContentProps {
   title?: string;
   members: TeamMember[];
   theme: "cream" | "dark" | "blue" | "purple";
@@ -24,7 +24,7 @@ const themes = {
   purple: { text: "#2D1B69", accent: "#7C3AED" },
 };
 
-export const TeamContent: React.FC<TeamContentProps> = ({
+export const PresentationTeamContent: React.FC<PresentationTeamContentProps> = ({
   title = "Our Team",
   members,
   theme,

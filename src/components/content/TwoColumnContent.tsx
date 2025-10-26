@@ -30,7 +30,6 @@ export const TwoColumnContent: React.FC<TwoColumnContentProps> = ({
   const aspectRatios = {
     square: "1 / 1",      // 1:1 - Perfect for screenshots, icons
     portrait: "3 / 4",    // 3:4 - Vertical images, mobile screens
-    landscape: "4 / 3",   // 4:3 - Horizontal images, dashboards
   };
 
   const containerStyle: React.CSSProperties = {

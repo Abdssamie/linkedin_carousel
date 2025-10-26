@@ -27,7 +27,7 @@ export { PresentationTimelineContent } from "./PresentationTimelineContent";
 export { PresentationListContent } from "./PresentationListContent";
 
 // Presentation-specific slide types
-export { AgendaContent } from "./AgendaContent";
+export { AgendaContent } from "./PresentationAgendaContent";
 export { KeyTakeawayContent } from "./KeyTakeawayContent";
-export { TeamContent } from "./TeamContent";
+export { PresentationTeamContent } from "./PresentationTeamContent";
 export { ThankYouContent } from "./ThankYouContent";

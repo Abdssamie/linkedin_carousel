@@ -36,7 +36,7 @@ export const QuoteContent: React.FC<QuoteContentProps> = ({
         justifyContent: "center",
         alignItems: "center",
         gap: "40px",
-        maxWidth: "900px",
+        maxWidth: "950px",
         textAlign: "center",
       }}
     >
@@ -46,8 +46,8 @@ export const QuoteContent: React.FC<QuoteContentProps> = ({
           fontSize: "8em",
           fontWeight: 700,
           color: colors.accent,
-          lineHeight: 0.5,
-          opacity: 0.3,
+          lineHeight: 0.2,
+          opacity: 0.7,
         }}
       >
         "
