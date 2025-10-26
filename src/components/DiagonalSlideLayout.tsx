@@ -297,8 +297,6 @@ export const DiagonalSlideLayout: React.FC<DiagonalSlideLayoutProps> = ({
     justifyContent: "center",
     alignItems: "center",
     padding: spacing['3xl'],
-    marginLeft: spacing.md,
-    paddingLeft: spacing["5xl"],
     zIndex: 11,
   };
 

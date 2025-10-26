@@ -141,8 +141,8 @@ export interface ThankYouPresentationSlide {
  * Presentation-specific slide configuration
  * Union of compatible slide types with speaker notes and optional diagonal layouts
  */
-export type PresentationSlideConfig = 
-  | BasePresentationSlide 
+export type PresentationSlideConfig =
+  | BasePresentationSlide
   | ImageSlideWithNotes
   | AgendaPresentationSlide
   | KeyTakeawayPresentationSlide

@@ -31,7 +31,7 @@ export const HeavyListContent: React.FC<HeavyListContentProps> = ({
         flexDirection: "column",
         justifyContent: "center",
         gap: spacing.xl,
-        maxWidth: "950px",
+        maxWidth: "900px",
         margin: "0 auto",
       }}
     >

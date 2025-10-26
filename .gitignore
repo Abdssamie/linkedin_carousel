@@ -4,3 +4,5 @@ dist
 .env
 .kiro
 out
+
+build

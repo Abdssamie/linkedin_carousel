@@ -7,7 +7,7 @@ import { renderPresentationSlideContent } from "../utils/renderPresentationSlide
 /**
  * Individual presentation slide component
  */
-const PresentationSlideComponent: React.FC<{
+export const PresentationSlideComponent: React.FC<{
   config: PresentationConfig;
   slideIndex: number;
 }> = ({ config, slideIndex }) => {
@@ -17,19 +17,28 @@ const PresentationSlideComponent: React.FC<{
 
   const content = renderPresentationSlideContent(slide, "dark", config.profileInitials || "AS");
 
-  // Validate and fallback for diagonal pattern
-  const validPatterns = ["left", "right", "incline-right", "incline-left", "none"];
-  let diagonalPattern = "diagonalPattern" in slide ? slide.diagonalPattern || "left" : "left";
+  // Auto-configure diagonal pattern based on slide type
+  // twoColumn and twoRow slides have their own image layout, so they don't use diagonal patterns
+  let diagonalPattern: "left" | "right" | "incline-right" | "incline-left" | "none" = "none";
+  let imagePath: string | undefined = undefined;
 
-  if ("diagonalPattern" in slide && slide.diagonalPattern && !validPatterns.includes(slide.diagonalPattern)) {
-    console.warn(
-      `Invalid diagonal pattern "${slide.diagonalPattern}" on slide ${slideNumber}. Falling back to "left".`
-    );
-    diagonalPattern = "left";
+  // Slides that support diagonal patterns (not twoColumn/twoRow)
+  if (slide.type !== "twoColumn" && slide.type !== "twoRow") {
+    // Alternate patterns for visual variety
+    const patternSequence: Array<"left" | "right" | "incline-right" | "incline-left" | "none"> = [
+      "left",
+      "right", 
+      "incline-right",
+      "incline-left",
+      "none"
+    ];
+    diagonalPattern = patternSequence[slideIndex % patternSequence.length];
   }
 
-  // Extract image path and position (may come from slide-specific properties or diagonal layout properties)
-  const imagePath = "imagePath" in slide ? slide.imagePath : undefined;
+  // Extract image path from slide if it has one (twoColumn/twoRow have their own imagePath)
+  if ("imagePath" in slide) {
+    imagePath = slide.imagePath;
+  }
   // const imagePosition = "imagePosition" in slide ? slide.imagePosition : undefined;
 
   // Warn if image path is provided but may fail to load

@@ -2,6 +2,10 @@
 
 A template for designing still images with dynamic data with built-in server for deploying to the cloud.
 
+## ⚠️ Experimental Features
+
+**Presentations**: The presentation format and related components are currently **experimental and not ready for production use**. They are under active development and may have incomplete features, bugs, or breaking changes. Use carousels for stable, production-ready image generation.
+
 <p align="center">
     <img src="https://remotion-still.herokuapp.com/PreviewCard.jpeg?title=Still%20image%20generator&description=Dynamic%20images%20generation%20service%20with%20full%20design%20freedom&slogan=Powered%20by%0ARemotion&c=1">
 </p>

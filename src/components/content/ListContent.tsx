@@ -27,10 +27,11 @@ export const ListContent: React.FC<ListContentProps> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
         gap: spacing.xl,
         maxWidth: "900px",
-        margin: "0 auto",
+        margin: 0,
       }}
     >
       {/* Title */}
@@ -41,6 +42,8 @@ export const ListContent: React.FC<ListContentProps> = ({
           color: colors.text,
           lineHeight: typography.lineHeights.tight,
           margin: 0,
+          marginBottom: spacing.xs,
+          marginLeft: "10rem",
           letterSpacing: typography.letterSpacing.tight,
           textShadow: `0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6)`,
         }}
@@ -59,12 +62,13 @@ export const ListContent: React.FC<ListContentProps> = ({
               display: "flex",
               alignItems: "flex-start",
               gap: spacing.lg,
+              marginLeft: spacing["5xl"]
             }}
           >
             {/* Bullet or checkmark */}
             <span
               style={{
-                fontSize: typography.sizes.h3,
+                fontSize: typography.sizes.h2,
                 fontWeight: typography.weights.bold,
                 color: colors.accent,
                 flexShrink: 0,
@@ -77,10 +81,10 @@ export const ListContent: React.FC<ListContentProps> = ({
             {/* Item text */}
             <span
               style={{
-                fontSize: typography.sizes.body,
-                fontWeight: typography.weights.medium,
+                fontSize: typography.sizes.h3,
+                fontWeight: typography.weights.regular,
                 color: colors.text,
-                lineHeight: typography.lineHeights.normal,
+                lineHeight: 2,
                 paddingTop: "4px",
               }}
             >

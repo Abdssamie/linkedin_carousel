@@ -5,7 +5,6 @@ import {
   HeavyListContent,
   InsightContent,
   KeyTakeawayContent,
-  ListContent,
   PresentationHookContent,
   PresentationListContent,
   PresentationQuestionContent,
