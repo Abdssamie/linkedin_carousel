@@ -1,9 +1,9 @@
 import React from "react";
 import { Still } from "remotion";
-import { SlideLayout } from "../components/SlideLayout";
-import { MinimalSlideLayout } from "../components/MinimalSlideLayout";
-import { CarouselConfig, ContentType } from "../types/carousel";
-import { renderSlideContent } from "../utils/renderSlideContent";
+import { SlideLayout } from "../../components/SlideLayout";
+import { MinimalSlideLayout } from "../../components/MinimalSlideLayout";
+import { CarouselConfig, ContentType } from "../../types/carousel";
+import { renderSlideContent } from "../../utils/renderSlideContent";
 
 /**
  * Individual slide component
@@ -18,7 +18,7 @@ export const CarouselSlideComponent: React.FC<{
 
   const content = renderSlideContent(
     slide,
-    "dark",
+    config.theme || "dark",
     config.profileInitials || "AS",
   );
 

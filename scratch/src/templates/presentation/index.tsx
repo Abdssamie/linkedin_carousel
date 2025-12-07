@@ -1,8 +1,8 @@
 import React from "react";
 import { Still } from "remotion";
-import { PresentationConfig, PRESENTATION_DIMENSIONS } from "../types/presentation";
-import { DiagonalSlideLayout } from "../components/DiagonalSlideLayout";
-import { renderPresentationSlideContent } from "../utils/renderPresentationSlideContent";
+import { PresentationConfig, PRESENTATION_DIMENSIONS } from "../../types/presentation";
+import { DiagonalSlideLayout } from "../../components/DiagonalSlideLayout";
+import { renderPresentationSlideContent } from "../../utils/renderPresentationSlideContent";
 
 /**
  * Individual presentation slide component
@@ -15,7 +15,7 @@ export const PresentationSlideComponent: React.FC<{
   const slideNumber = slideIndex + 1;
   // const totalSlides = config.slides.length;
 
-  const content = renderPresentationSlideContent(slide, "dark", config.profileInitials || "AS");
+  const content = renderPresentationSlideContent(slide, config.theme || "dark", config.profileInitials || "AS");
 
   // Auto-configure diagonal pattern based on slide type
   // twoColumn and twoRow slides have their own image layout, so they don't use diagonal patterns

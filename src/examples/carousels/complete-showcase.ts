@@ -159,7 +159,44 @@ export const completeShowcase: CarouselConfig = {
       content: "We automated our entire workflow and reduced operational costs by 60% while improving quality and speed.",
       highlight: "60% cost reduction in 3 months",
     },
-    // 15. CTA slide
+    // 15. Bar Chart slide
+    {
+      type: "barChart",
+      title: "Quarterly Revenue Growth",
+      showValues: true,
+      data: [
+        { label: "Q1", value: 150 },
+        { label: "Q2", value: 230 },
+        { label: "Q3", value: 180 },
+        { label: "Q4", value: 320 },
+      ],
+    },
+    // 16. Line Chart slide
+    {
+      type: "lineChart",
+      title: "User Acquisition",
+      data: [
+        { label: "Jan", value: 1000, value2: 800 },
+        { label: "Feb", value: 1500, value2: 1200 },
+        { label: "Mar", value: 1300, value2: 1100 },
+        { label: "Apr", value: 2200, value2: 1800 },
+        { label: "May", value: 2800, value2: 2400 },
+      ],
+      seriesNames: { value: "Total Users", value2: "Active Users" },
+    },
+    // 17. Pie Chart slide
+    {
+      type: "pieChart",
+      title: "Market Share Distribution",
+      donut: true,
+      data: [
+        { label: "Product A", value: 45 },
+        { label: "Product B", value: 30 },
+        { label: "Product C", value: 15 },
+        { label: "Others", value: 10 },
+      ],
+    },
+    // 18. CTA slide
     {
       type: "cta",
       headline: "Ready to Transform Your Workflow?",

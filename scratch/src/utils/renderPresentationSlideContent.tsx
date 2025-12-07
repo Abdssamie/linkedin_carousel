@@ -1,34 +1,39 @@
 import {
-  AgendaContent,
+  BarChartContent,
   ComparisonContent,
   CTAContent,
   HeavyListContent,
   InsightContent,
   KeyTakeawayContent,
+  LineChartContent,
+  PieChartContent,
+  PresentationAgendaContent,
   PresentationHookContent,
   PresentationListContent,
   PresentationQuestionContent,
   PresentationQuoteContent,
+  PresentationTeamContent,
   PresentationTimelineContent,
   StatContent,
-  PresentationTeamContent,
   ThankYouContent,
   TipContent,
   TwoColumnContent,
   TwoRowContent,
 } from "../components/content";
-import { PresentationSlideConfig } from "../types/presentation";
 import { ThemeKey } from "../styles/themes";
+import { PresentationSlideConfig } from "../types/presentation";
 
 /**
- * Renders the appropriate content component for presentations (centered versions)
+ * Renders the appropriate content component based on slide type for presentations
+ * Uses specialized presentation components where available, falls back to standard ones
  */
 export const renderPresentationSlideContent = (
   slide: PresentationSlideConfig,
   theme: ThemeKey = "dark",
   profileInitials: string,
-) => {
+): React.ReactNode => {
   switch (slide.type) {
+    // Presentation-specific components
     case "hook":
       return (
         <PresentationHookContent
@@ -41,6 +46,84 @@ export const renderPresentationSlideContent = (
         />
       );
 
+    case "agenda":
+      return (
+        <PresentationAgendaContent
+          title={slide.title}
+          items={slide.items}
+          theme={theme}
+        />
+      );
+
+    case "list":
+      return (
+        <PresentationListContent
+          title={slide.title}
+          items={slide.items}
+          theme={theme}
+          useCheckmarks={slide.useCheckmarks}
+        />
+      );
+
+    case "question":
+      return (
+        <PresentationQuestionContent
+          question={slide.question}
+          options={slide.options}
+          callToAction={slide.callToAction}
+          theme={theme}
+        />
+      );
+
+    case "quote":
+      return (
+        <PresentationQuoteContent
+          quote={slide.quote}
+          author={slide.author}
+          role={slide.role}
+          theme={theme}
+        />
+      );
+
+    case "timeline":
+      return (
+        <PresentationTimelineContent
+          title={slide.title}
+          steps={slide.steps}
+          theme={theme}
+          orientation={slide.orientation}
+        />
+      );
+
+    case "team":
+      return (
+        <PresentationTeamContent
+          title={slide.title}
+          members={slide.members}
+          theme={theme}
+        />
+      );
+
+    case "keyTakeaway":
+      return (
+        <KeyTakeawayContent
+          title={slide.title}
+          takeaways={slide.takeaways}
+          theme={theme}
+        />
+      );
+
+    case "thankYou":
+      return (
+        <ThankYouContent
+          headline={slide.headline}
+          subheadline={slide.subheadline}
+          contactInfo={slide.contactInfo}
+          theme={theme}
+        />
+      );
+
+    // Shared components (reused from carousel)
     case "tip":
       return (
         <TipContent
@@ -73,16 +156,6 @@ export const renderPresentationSlideContent = (
         />
       );
 
-    case "quote":
-      return (
-        <PresentationQuoteContent
-          quote={slide.quote}
-          author={slide.author}
-          role={slide.role}
-          theme={theme}
-        />
-      );
-
     case "stat":
       return (
         <StatContent
@@ -91,16 +164,6 @@ export const renderPresentationSlideContent = (
           context={slide.context}
           source={slide.source}
           theme={theme}
-        />
-      );
-
-    case "list":
-      return (
-        <PresentationListContent
-          title={slide.title}
-          items={slide.items}
-          theme={theme}
-          useCheckmarks={slide.useCheckmarks}
         />
       );
 
@@ -123,26 +186,6 @@ export const renderPresentationSlideContent = (
           rightLabel={slide.rightLabel}
           rightContent={slide.rightContent}
           theme={theme}
-        />
-      );
-
-    case "question":
-      return (
-        <PresentationQuestionContent
-          question={slide.question}
-          options={slide.options}
-          callToAction={slide.callToAction}
-          theme={theme}
-        />
-      );
-
-    case "timeline":
-      return (
-        <PresentationTimelineContent
-          title={slide.title}
-          steps={slide.steps}
-          theme={theme}
-          orientation={slide.orientation}
         />
       );
 
@@ -170,44 +213,41 @@ export const renderPresentationSlideContent = (
         />
       );
 
-    case "agenda":
+    case "barChart":
       return (
-        <AgendaContent
+        <BarChartContent
           title={slide.title}
-          items={slide.items}
+          data={slide.data}
+          showValues={slide.showValues}
           theme={theme}
         />
       );
 
-    case "keyTakeaway":
+    case "lineChart":
       return (
-        <KeyTakeawayContent
+        <LineChartContent
           title={slide.title}
-          takeaways={slide.takeaways}
+          data={slide.data}
+          seriesNames={slide.seriesNames}
           theme={theme}
         />
       );
 
-    case "team":
+    case "pieChart":
       return (
-        <PresentationTeamContent
+        <PieChartContent
           title={slide.title}
-          members={slide.members}
+          data={slide.data}
+          donut={slide.donut}
           theme={theme}
         />
       );
 
-    case "thankYou":
-      return (
-        <ThankYouContent
-          headline={slide.headline}
-          subheadline={slide.subheadline}
-          contactInfo={slide.contactInfo}
-          theme={theme}
-        />
-      );
+    case "staticImage":
+      // Static image slides are handled by the layout component
+      return null;
 
     default:
-      return <div>Unknown slide type</div>;
+      return <div>Unknown presentation slide type</div>;
   }
 };

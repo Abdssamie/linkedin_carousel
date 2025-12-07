@@ -19,6 +19,9 @@ import {
   StaticImageSlideConfig,
   TwoColumnSlideConfig,
   TwoRowSlideConfig,
+  BarChartSlideConfig,
+  LineChartSlideConfig,
+  PieChartSlideConfig,
 } from "./carousel";
 
 /**
@@ -56,6 +59,9 @@ type BasePresentationSlide = (
   | ComparisonSlideConfig
   | QuestionSlideConfig
   | TimelineSlideConfig
+  | BarChartSlideConfig
+  | LineChartSlideConfig
+  | PieChartSlideConfig
 ) & {
   /**
    * Optional speaker notes (metadata only, not rendered visually)

@@ -13,6 +13,9 @@ import {
   TipContent,
   TwoColumnContent,
   TwoRowContent,
+  BarChartContent,
+  LineChartContent,
+  PieChartContent,
 } from "../components/content";
 import { ThemeKey } from "../styles/themes";
 
@@ -162,6 +165,36 @@ export const renderSlideContent = (
           title={slide.title}
           content={slide.content}
           bulletPoints={slide.bulletPoints}
+          theme={theme}
+        />
+      );
+
+    case "barChart":
+      return (
+        <BarChartContent
+          title={slide.title}
+          data={slide.data}
+          showValues={slide.showValues}
+          theme={theme}
+        />
+      );
+
+    case "lineChart":
+      return (
+        <LineChartContent
+          title={slide.title}
+          data={slide.data}
+          seriesNames={slide.seriesNames}
+          theme={theme}
+        />
+      );
+
+    case "pieChart":
+      return (
+        <PieChartContent
+          title={slide.title}
+          data={slide.data}
+          donut={slide.donut}
           theme={theme}
         />
       );

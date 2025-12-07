@@ -1,12 +1,8 @@
 import React from "react";
 import { Still } from "remotion";
-import { createCarousel, CarouselSlideComponent as GenericCarouselSlide } from "./lib/createCarousel";
-import { createPresentation, PresentationSlideComponent } from "./lib/createPresentation";
+import { createCarousel, CarouselSlideComponent as GenericCarouselSlide } from "./templates/carousel";
 import { newExampleCarousels } from "./examples/carousels/complete-showcase";
-import {
-  businessPitchPresentation,
-  companyOverviewPresentation,
-} from "./examples/presentations";
+import { themeCarousels } from "./examples/carousels/theme-showcase";
 
 
 export const RemotionRoot: React.FC = () => {
@@ -40,41 +36,9 @@ export const RemotionRoot: React.FC = () => {
         }}
       />
 
-      {/* Generic carousel slide composition for dynamic rendering */}
-      <Still
-        id="presentation-slide"
-        component={PresentationSlideComponent}
-        width={1920}
-        height={1080}
-        defaultProps={{
-          config: {
-            id: "default",
-            brandName: "OPC.AI",
-            website: "@opc.ai",
-            format: "presentation",
-            slides: [
-              {
-                type: "hook",
-                headlineTop: "Default",
-                headlineHighlight: "Carousel",
-              },
-              {
-                type: "hook",
-                headlineTop: "Default",
-                headlineHighlight: "Carousel",
-              },
-            ],
-          },
-          slideIndex: 0,
-        }}
-        />
-
       {/* Pre-configured example carousels */}
       {newExampleCarousels.map((carousel) => createCarousel(carousel))}
-
-      {/* Pre-configured example presentations */}
-      {createPresentation(businessPitchPresentation)}
-      {createPresentation(companyOverviewPresentation)}
+      {themeCarousels.map((carousel) => createCarousel(carousel))}
     </>
   );
 };

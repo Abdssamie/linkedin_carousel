@@ -30,63 +30,9 @@ export const themes: Record<string, ThemeConfig> = {
     shadow: "rgba(0, 217, 255, 0.4)", // Accent-based shadows
     glow: "rgba(0, 217, 255, 0.6)",   // Radial glow effect
   },
-
-  // SECONDARY THEMES - Professional alternatives
-  cream: {
-    bg: "#FAFAF8",
-    text: "#1A1A1A",
-    textSecondary: "#666666",
-    accent: "#FF6B35",       // Warm orange accent
-    accentSecondary: "#E55A2B",
-    grid: "rgba(26, 26, 26, 0.05)",
-    border: "rgba(255, 107, 53, 0.3)",
-    overlay: "rgba(255, 107, 53, 0.1)",
-    shadow: "rgba(255, 107, 53, 0.4)",
-    glow: "rgba(255, 107, 53, 0.6)",
-  },
-
-  blue: {
-    bg: "#F8FBFF",
-    text: "#0A2540",
-    textSecondary: "#4A5568",
-    accent: "#0066FF",
-    accentSecondary: "#0052CC",
-    grid: "rgba(10, 37, 64, 0.05)",
-    border: "rgba(0, 102, 255, 0.3)",
-    overlay: "rgba(0, 102, 255, 0.1)",
-    shadow: "rgba(0, 102, 255, 0.4)",
-    glow: "rgba(0, 102, 255, 0.6)",
-  },
-
-  purple: {
-    bg: "#FDFDFE",
-    text: "#1A1A2E",
-    textSecondary: "#4A5568",
-    accent: "#7C3AED",
-    accentSecondary: "#6D28D9",
-    grid: "rgba(26, 26, 46, 0.05)",
-    border: "rgba(124, 58, 237, 0.3)",
-    overlay: "rgba(124, 58, 237, 0.1)",
-    shadow: "rgba(124, 58, 237, 0.4)",
-    glow: "rgba(124, 58, 237, 0.6)",
-  },
-
-  // NEW - Modern Green Tech
-  green: {
-    bg: "#0D1117",
-    text: "#E6EDF3",
-    textSecondary: "#7D8590",
-    accent: "#00E676",
-    accentSecondary: "#00C853",
-    grid: "rgba(230, 237, 243, 0.03)",
-    border: "rgba(0, 230, 118, 0.3)",
-    overlay: "rgba(0, 230, 118, 0.1)",
-    shadow: "rgba(0, 230, 118, 0.4)",
-    glow: "rgba(0, 230, 118, 0.6)",
-  },
 };
 
-export type ThemeKey = "blue" | "purple" | "dark" | "cream";
+export type ThemeKey = "dark" | string; // Allow string for flexibility if needed, but primary is dark
 
 // Typography system based on Lexend font
 export const typography = {

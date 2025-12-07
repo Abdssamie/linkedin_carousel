@@ -34,6 +34,45 @@ export const businessPitchPresentation: PresentationConfig = {
       imagePosition: "left",
       speakerNotes: "Highlight the key metric that demonstrates our impact. Reference customer case studies if questions arise.",
     },
+    // Financial Projections (Charts)
+    {
+      type: "barChart",
+      title: "Projected Revenue",
+      diagonalPattern: "none",
+      speakerNotes: "Our conservative estimates show 10x growth over 4 years.",
+      data: [
+        { label: "2024", value: 1.2 },
+        { label: "2025", value: 2.8 },
+        { label: "2026", value: 5.5 },
+        { label: "2027", value: 12.0 },
+      ],
+      showValues: true,
+    },
+    {
+      type: "pieChart",
+      title: "Revenue Composition",
+      diagonalPattern: "none",
+      speakerNotes: "We have a healthy mix of recurring and one-time revenue.",
+      donut: true,
+      data: [
+        { label: "SaaS Subscription", value: 65 },
+        { label: "Enterprise License", value: 25 },
+        { label: "Pro Services", value: 10 },
+      ],
+    },
+    {
+      type: "lineChart",
+      title: "Active User Growth",
+      diagonalPattern: "none",
+      speakerNotes: "User engagement is tracking perfectly with our viral loop model.",
+      data: [
+        { label: "Q1", value: 500, value2: 200 },
+        { label: "Q2", value: 1200, value2: 800 },
+        { label: "Q3", value: 3500, value2: 2100 },
+        { label: "Q4", value: 8000, value2: 5500 },
+      ],
+      seriesNames: { value: "Registered", value2: "Daily Active" },
+    },
     // Slide 3: Problem statement
     {
       type: "insight",

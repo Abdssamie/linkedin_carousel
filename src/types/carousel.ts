@@ -25,13 +25,61 @@ export type ContentType =
   | "timeline"
   | "staticImage"
   | "twoColumn"
-  | "twoRow";
+  | "twoRow"
+  | "barChart"
+  | "lineChart"
+  | "pieChart";
 
 /**
  * Base slide configuration (common to all slides)
  */
 interface BaseSlideConfig {
   type: ContentType;
+}
+
+/**
+ * Bar Chart slide configuration
+ */
+export interface BarChartSlideConfig extends BaseSlideConfig {
+  type: "barChart";
+  title: string;
+  data: Array<{
+    label: string;
+    value: number;
+    color?: string;
+  }>;
+  showValues?: boolean;
+}
+
+/**
+ * Line Chart slide configuration
+ */
+export interface LineChartSlideConfig extends BaseSlideConfig {
+  type: "lineChart";
+  title: string;
+  data: Array<{
+    label: string;
+    value: number;
+    value2?: number;
+  }>;
+  seriesNames?: {
+    value: string;
+    value2?: string;
+  };
+}
+
+/**
+ * Pie Chart slide configuration
+ */
+export interface PieChartSlideConfig extends BaseSlideConfig {
+  type: "pieChart";
+  title: string;
+  data: Array<{
+    label: string;
+    value: number;
+    color?: string;
+  }>;
+  donut?: boolean;
 }
 
 /**
@@ -204,7 +252,10 @@ export type SlideConfig =
   | TimelineSlideConfig
   | StaticImageSlideConfig
   | TwoColumnSlideConfig
-  | TwoRowSlideConfig;
+  | TwoRowSlideConfig
+  | BarChartSlideConfig
+  | LineChartSlideConfig
+  | PieChartSlideConfig;
 
 /**
  * Complete carousel configuration
@@ -212,6 +263,12 @@ export type SlideConfig =
 export interface CarouselConfig {
   /** Unique identifier (kebab-case) */
   id: string;
+
+  /**
+   * Visual theme for the carousel
+   * @default "dark"
+   */
+  theme?: ThemeType;
 
   /** Brand name in header */
   brandName: string;
