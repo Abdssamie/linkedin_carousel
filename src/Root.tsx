@@ -2,7 +2,6 @@ import React from "react";
 import { Still } from "remotion";
 import { createCarousel, CarouselSlideComponent as GenericCarouselSlide } from "./templates/carousel";
 import { newExampleCarousels } from "./examples/carousels/complete-showcase";
-import { themeCarousels } from "./examples/carousels/theme-showcase";
 
 
 export const RemotionRoot: React.FC = () => {
@@ -38,7 +37,6 @@ export const RemotionRoot: React.FC = () => {
 
       {/* Pre-configured example carousels */}
       {newExampleCarousels.map((carousel) => createCarousel(carousel))}
-      {themeCarousels.map((carousel) => createCarousel(carousel))}
     </>
   );
 };
