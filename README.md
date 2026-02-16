@@ -29,7 +29,7 @@ bunx remotion upgrade
 ## Server
 
 You can run a server that serves dynamic images based on it's URL. Run
-
+README.md
 ```console
 bun run server
 ```

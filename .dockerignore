@@ -1,1 +1,10 @@
 node_modules
+.git
+dist
+.env
+*.log
+.DS_Store
+.vscode
+.idea
+*.md
+cover.png

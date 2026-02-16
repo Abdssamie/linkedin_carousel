@@ -1,9 +1,10 @@
-# This is a dockerized version of a server that you can easily deploy somewhere.
-# If you don't want server rendering, you can safely delete this file.
+# Multi-stage Docker build for Remotion server
+# Uses bun for faster builds and smaller images
 
-FROM node:22-bookworm-slim
+FROM oven/bun:1-slim AS base
 
-RUN apt install -y \
+# Install Chrome dependencies (official Remotion list)
+RUN apt-get update && apt install -y \
   libnss3 \
   libdbus-1-3 \
   libatk1.0-0 \
@@ -15,18 +16,25 @@ RUN apt install -y \
   libxcomposite1 \
   libxdamage1 \
   libatk-bridge2.0-0 \
-  libcups2
+  libpango-1.0-0 \
+  libcairo2 \
+  libcups2 \
+  && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir app
-COPY . ./app
-
+# Create app directory
 WORKDIR /app
 
-RUN npm i
+# Copy package files first (for better caching)
+COPY package.json bun.lock ./
 
-# Run everything after as non-privileged user.
-USER pptruser
+# Install dependencies
+RUN bun install --frozen-lockfile
 
+# Copy source code
+COPY . .
+
+# Expose the server port
 EXPOSE 8000
 
-CMD ["npm", "run", "server"] 
+# Run the server
+CMD ["bun", "run", "server"]
