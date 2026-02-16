@@ -50,12 +50,10 @@ app.use(
 );
 
 // Documentation endpoint (public, no auth required)
+const BASE_URL = process.env.BASE_URL || `http://localhost:${port}`;
 app.get("/", (req, res) => {
-  const protocol = req.headers["x-forwarded-proto"] || req.protocol;
-  const host = req.headers.host || `localhost:${port}`;
-  const baseUrl = `${protocol}://${host}`;
   res.set("content-type", "text/html");
-  res.send(generateDocumentationHTML(baseUrl));
+  res.send(generateDocumentationHTML(BASE_URL));
 });
 
 app.use(
