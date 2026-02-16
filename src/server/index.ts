@@ -16,6 +16,7 @@ import { helpText } from "./help-text";
 import { getImageType, getMimeType } from "./image-types";
 import { getImageHash } from "./make-hash";
 import { sendFile } from "./send-file";
+import { generateDocumentationHTML } from "./docs";
 
 import bearerToken from "express-bearer-token";
 
@@ -47,6 +48,15 @@ app.use(
     max: 20,
   }),
 );
+
+// Documentation endpoint (public, no auth required)
+app.get("/", (req, res) => {
+  const protocol = req.headers["x-forwarded-proto"] || req.protocol;
+  const host = req.headers.host || `localhost:${port}`;
+  const baseUrl = `${protocol}://${host}`;
+  res.set("content-type", "text/html");
+  res.send(generateDocumentationHTML(baseUrl));
+});
 
 app.use(
   bearerToken({
