@@ -64,7 +64,9 @@ app.use(
 
 app.use((req, res, next) => {
   const token = req.token;
-  if (token !== API_KEY) {
+
+  // Protec all endpoints except the documentation endpoint with API key authentication
+  if (token !== API_KEY && req.path !== "/") {
     return res.status(401).json({ error: "Unauthorized" });
   }
   next();
