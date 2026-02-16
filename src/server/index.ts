@@ -17,7 +17,14 @@ import { getImageType, getMimeType } from "./image-types";
 import { getImageHash } from "./make-hash";
 import { sendFile } from "./send-file";
 
+import bearerToken from "express-bearer-token";
+
 dotenv.config();
+
+const API_KEY = process.env.API_KEY;
+if (!API_KEY) {
+  throw new Error("API_KEY is not set in the environment variables.");
+}
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -40,6 +47,20 @@ app.use(
     max: 20,
   }),
 );
+
+app.use(
+  bearerToken({
+    headerKey: "Bearer",
+  }),
+);
+
+app.use((req, res, next) => {
+  const token = req.token;
+  if (token !== API_KEY) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  next();
+});
 
 // The image is rendered when /[CompositionName].[imageformat] is called.
 // Props are passed via query string.
